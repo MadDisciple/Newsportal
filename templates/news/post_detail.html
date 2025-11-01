@@ -1,0 +1,23 @@
+{% extends "default.html" %}
+
+{% load custom_filters %}
+
+
+{% block title %}
+{{ post.title|censor }}
+{% endblock title %}
+
+
+{% block content %}
+
+    <h2>{{ post.title|censor }}</h2>
+
+    <small class="text-muted">
+        Автор: {{ post.author.user.username }} | Дата: {{ post.created_at|date:"d.m.Y" }}
+    </small>
+
+    <hr>
+
+    <p>{{ post.text|censor|safe }}</p>
+
+{% endblock content %}
