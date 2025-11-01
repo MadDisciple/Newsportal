@@ -1,1 +1,1 @@
-# Команды для djago shell находятся в .txt файле "commands"
+# Команды для django shell находятся в .txt файле "commands"
