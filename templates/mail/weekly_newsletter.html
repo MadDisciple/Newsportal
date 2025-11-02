@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Еженедельный дайджест</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6;">
+
+    <p>
+        Здравствуй, <strong>{{ user.username }}</strong>!
+    </p>
+    <p>
+        Новые статьи за неделю в твоём любимом разделе:
+        <strong>«{{ category.name }}»</strong>
+    </p>
+
+    <hr>
+
+    {% for post in posts %}
+        <div style="margin-bottom: 20px;">
+            <h4>
+                <a href="{{ site_url }}{{ post.get_absolute_url }}">
+                    {{ post.title }}
+                </a>
+            </h4>
+            <p>
+                {{ post.text|striptags|truncatechars:100 }}...
+            </p>
+        </div>
+    {% endfor %}
+
+    <hr>
+
+    <p style="color: #777; font-size: 0.8em;">
+        Вы получили это письмо, так как подписаны
+        на категорию «{{ category.name }}».
+    </p>
+
+</body>
+</html>

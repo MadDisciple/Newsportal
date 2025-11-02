@@ -2,7 +2,8 @@ from django.urls import path
 from .views import (
     PostList, PostDetail, PostSearch,
     NewsCreate, NewsUpdate, NewsDelete,
-    become_author
+    become_author,
+    toggle_subscription,
 )
 
 urlpatterns = [
@@ -19,4 +20,6 @@ urlpatterns = [
     path('<int:pk>/delete/', NewsDelete.as_view(), name='news_delete'),
 
     path('become_author/', become_author, name='become_author'),
+
+    path('subscribe/<int:category_id>/', toggle_subscription, name='toggle_subscription'),
 ]

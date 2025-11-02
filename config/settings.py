@@ -43,8 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'news',
+    'news.apps.NewsConfig',
     'django_filters',
+    'django_apscheduler',
 ]
 
 MIDDLEWARE = [
@@ -126,7 +127,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'khorev2012'
+EMAIL_HOST_PASSWORD = 'meunemcmqsiualtz'
+
+DEFAULT_FROM_EMAIL = 'khorev2012@yandex.ru'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -145,6 +154,8 @@ ACCOUNT_FORMS = {
     'login': 'news.forms.CustomLoginForm',
     'signup': 'news.forms.CustomSignupForm',
 }
+
+ACCOUNT_ADAPTER = 'news.adapter.CustomAccountAdapter'
 
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/news/'
@@ -168,3 +179,9 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
     }
 }
+
+
+SITE_URL = 'http://127.0.0.1:8000'
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25

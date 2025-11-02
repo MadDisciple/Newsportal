@@ -8,8 +8,11 @@ from .filters import PostFilter
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
+from .models import Category
+from django.utils import timezone
+from django.core.exceptions import ValidationError
 
 
 
@@ -51,6 +54,19 @@ class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'news.add_post'
 
     def form_valid(self, form):
+        user = self.request.user
+        today = timezone.now().date()
+        post_count_today = Post.objects.filter(
+            author__user=user,
+            created_at__date=today
+        ).count()
+
+        if post_count_today >= 3:
+            form.add_error(None, ValidationError(
+                "Вы не можете публиковать более трех постов в сутки."
+            ))
+            return self.form_invalid(form)
+
         post = form.save(commit=False)
         post.post_type = Post.NEWS
         return super().form_valid(form)
@@ -77,6 +93,20 @@ class ArticleCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'news.add_post'
 
     def form_valid(self, form):
+        user = self.request.user
+        today = timezone.now().date()
+
+        post_count_today = Post.objects.filter(
+            author__user=user,
+            created_at__date=today
+        ).count()
+
+        if post_count_today >= 3:
+            form.add_error(None, ValidationError(
+                "Вы не можете публиковать более трех постов в сутки."
+            ))
+            return self.form_invalid(form)
+
         post = form.save(commit=False)
         post.post_type = Post.ARTICLE
         return super().form_valid(form)
@@ -107,3 +137,17 @@ def become_author(request):
         messages.info(request, 'Вы уже являетесь автором.')
 
     return redirect('/news/')
+
+@login_required # Только для залогиненных
+def toggle_subscription(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    user = request.user
+
+    if category.subscribers.filter(id=user.id).exists():
+        category.subscribers.remove(user)
+        messages.info(request, f'Вы отписались от категории: {category.name}')
+    else:
+        category.subscribers.add(user)
+        messages.success(request, f'Вы подписались на категорию: {category.name}')
+
+    return redirect(request.META.get('HTTP_REFERER', '/news/'))

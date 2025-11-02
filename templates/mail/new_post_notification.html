@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-R">
+    <title>{{ post.title }}</title>
+</head>
+<body>
+
+    {% load custom_filters %}
+    <p>Здравствуй, {{ user.username }}. Новая статья в твоём любимом разделе!</p>
+
+    <hr>
+
+    <h3><a href="{{ site_url }}{{ post.get_absolute_url }}">{{ post.title|censor }}</a></h3>
+    <p>
+        {{ post.text|striptags|censor|truncatechars:50 }}...
+    </p>
+
+    <hr>
+
+    <p>
+        <a href="{{ site_url }}{{ post.get_absolute_url }}">
+            Читать статью полностью
+        </a>
+    </p>
+</body>
+</html>

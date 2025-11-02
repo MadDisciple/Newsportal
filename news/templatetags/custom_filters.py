@@ -43,3 +43,10 @@ def addclass(field, css_class):
             return field
         return field.as_widget(attrs={'class': css_class})
     return field
+
+@register.simple_tag(takes_context=True)
+def is_subscribed(context, category):
+    user = context['request'].user
+    if not user.is_authenticated:
+        return False
+    return category.subscribers.filter(id=user.id).exists()

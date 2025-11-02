@@ -28,11 +28,31 @@
         </small>
         <br>
         <small>
-            Категории:
-            {% for category in post.categories.all %}
-                <span class="badge bg-secondary">{{ category.name }}</span>
-            {% endfor %}
-        </small>
+    Категории:
+    {% for category in post.categories.all %}
+        <span class="badge bg-secondary">{{ category.name }}</span>
+
+        {% if user.is_authenticated %}
+
+            {% is_subscribed category as subscribed %}
+
+            {% if subscribed %}
+                <a href="{% url 'toggle_subscription' category.id %}"
+                   class="btn btn-sm btn-outline-secondary"
+                   title="Отписаться от {{ category.name }}">
+                   Отписаться
+                </a>
+            {% else %}
+                <a href="{% url 'toggle_subscription' category.id %}"
+                   class="btn btn-sm btn-primary"
+                   title="Подписаться на {{ category.name }}">
+                   Подписаться
+                </a>
+            {% endif %}
+        {% endif %}
+
+        {% endfor %}
+</small>
     </div>
 
     <hr>
