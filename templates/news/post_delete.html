@@ -1,0 +1,21 @@
+{% extends "default.html" %}
+
+{% block title %}
+Удаление
+{% endblock title %}
+
+{% block content %}
+    <h2>Удаление</h2>
+    <hr>
+    
+    <p>Вы уверены, что хотите удалить пост: 
+       <strong>"{{ post.title }}"</strong>?
+    </p>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Да, удалить</button>
+        <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">Отмена</a>
+    </form>
+
+{% endblock content %}

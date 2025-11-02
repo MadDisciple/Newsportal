@@ -1,0 +1,19 @@
+{% extends "default.html" %}
+
+{% block title %}
+Создание/Редактирование
+{% endblock title %}
+
+{% block content %}
+    <h2>Форма создания/редактирования</h2>
+    <hr>
+    
+    <form method="POST">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        <button type="submit" class="btn btn-success">Сохранить</button>
+    </form>
+
+{% endblock content %}

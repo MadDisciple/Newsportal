@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'news'
+    'news',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -117,4 +118,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_URL = '/admin/login/'
 
