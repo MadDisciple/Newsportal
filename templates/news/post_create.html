@@ -1,17 +1,66 @@
 {% extends "default.html" %}
 
+{% load custom_filters %}
+
 {% block title %}
-Создание/Редактирование
+Форма поста
 {% endblock title %}
 
 {% block content %}
-    <h2>Форма создания/редактирования</h2>
+    <h2>{% if object %}Редактирование{% else %}Создание{% endif %} поста</h2>
     <hr>
-    
+
     <form method="POST">
         {% csrf_token %}
-        
-        {{ form.as_p }}
+
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+
+        <div class="mb-3">
+            <label for="{{ form.author.id_for_label }}" class="form-label">
+                Автор
+            </label>
+            {{ form.author|addclass:"form-control" }}
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.categories.id_for_label }}" class="form-label">
+                Категории
+            </label>
+            {{ form.categories|addclass:"form-control" }}
+            {% if form.categories.errors %}
+            <div class="invalid-feedback d-block">
+                {{ form.categories.errors.as_text }}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.title.id_for_label }}" class="form-label">
+                Заголовок
+            </label>
+            {{ form.title|addclass:"form-control" }}
+            {% if form.title.errors %}
+            <div class="invalid-feedback d-block">
+                {{ form.title.errors.as_text }}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.text.id_for_label }}" class="form-label">
+                Текст
+            </label>
+            {{ form.text|addclass:"form-control" }}
+            {% if form.text.errors %}
+            <div class="invalid-feedback d-block">
+                {{ form.text.errors.as_text }}
+            </div>
+            {% endif %}
+        </div>
         
         <button type="submit" class="btn btn-success">Сохранить</button>
     </form>

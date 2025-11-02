@@ -2,7 +2,6 @@
 
 {% load custom_filters %}
 
-
 {% block title %}
 {{ post.title|censor }}
 {% endblock title %}
@@ -10,14 +9,41 @@
 
 {% block content %}
 
-    <h2>{{ post.title|censor }}</h2>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'post_list' %}">Лента новостей</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ post.title|censor|truncatechars:50 }}</li>
+      </ol>
+    </nav>
 
-    <small class="text-muted">
-        Автор: {{ post.author.user.username }} | Дата: {{ post.created_at|date:"d.m.Y" }}
-    </small>
+    <h1 class="display-5 my-3">{{ post.title|censor }}</h1>
+
+    <div class="mb-3 text-muted">
+        <small>
+            Автор: <strong>{{ post.author.user.username }}</strong>
+        </small>
+        <br>
+        <small>
+            Дата: <strong>{{ post.created_at|date:"d M Y, H:i" }}</strong>
+        </small>
+        <br>
+        <small>
+            Категории:
+            {% for category in post.categories.all %}
+                <span class="badge bg-secondary">{{ category.name }}</span>
+            {% endfor %}
+        </small>
+    </div>
 
     <hr>
 
-    <p>{{ post.text|censor|safe }}</p>
+    <div class="article-content" style="font-size: 1.1rem; line-height: 1.6;">
+        {{ post.text|censor|linebreaks }}
+    </div>
 
-{% endblock content %}
+    <hr class="my-4">
+    <a href="{% url 'post_list' %}" class="btn btn-outline-secondary">
+        &larr; Назад к списку
+    </a>
+
+    {% endblock content %}

@@ -35,3 +35,11 @@ def censor(value):
     censored_value = re.sub(pattern, replace_match, value, flags=re.IGNORECASE)
 
     return censored_value
+
+@register.filter(name='addclass')
+def addclass(field, css_class):
+    if hasattr(field, 'field') and hasattr(field.field, 'widget'):
+        if field.field.widget.__class__.__name__ == 'HiddenInput':
+            return field
+        return field.as_widget(attrs={'class': css_class})
+    return field
