@@ -3,19 +3,28 @@ from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 from .models import Post
 from .filters import PostFilter
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.shortcuts import redirect, get_object_or_404
+from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from .models import Category
 from django.utils import timezone
 from django.core.exceptions import ValidationError
+from django.views import View
+from django.http import HttpResponseRedirect
+import pytz
 
 
 
+
+
+@method_decorator(cache_page(60), name='dispatch')
 class PostList(ListView):
     model = Post
     ordering = ['-created_at']
@@ -24,12 +33,14 @@ class PostList(ListView):
     paginate_by = 10
 
 
+@method_decorator(cache_page(300), name='dispatch')
 class PostDetail(DetailView):
     model = Post
     template_name = 'news/post_detail.html'
     context_object_name = 'post'
 
 
+@method_decorator(cache_page(60), name='dispatch')
 class PostSearch(ListView):
     model = Post
     ordering = ['-created_at']
@@ -63,7 +74,7 @@ class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
         if post_count_today >= 3:
             form.add_error(None, ValidationError(
-                "Вы не можете публиковать более трех постов в сутки."
+                _("Вы не можете публиковать более трех постов в сутки.")
             ))
             return self.form_invalid(form)
 
@@ -103,7 +114,7 @@ class ArticleCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
         if post_count_today >= 3:
             form.add_error(None, ValidationError(
-                "Вы не можете публиковать более трех постов в сутки."
+                _("Вы не можете публиковать более трех постов в сутки.")
             ))
             return self.form_invalid(form)
 
@@ -132,22 +143,28 @@ def become_author(request):
     authors_group = Group.objects.get(name='authors')
     if not user.groups.filter(name='authors').exists():
         authors_group.user_set.add(user)
-        messages.success(request, 'Поздравляем, вы теперь автор!')
+        messages.success(request, _('Поздравляем, вы теперь автор!'))
     else:
-        messages.info(request, 'Вы уже являетесь автором.')
+        messages.info(request, _('Вы уже являетесь автором.'))
 
     return redirect('/news/')
 
-@login_required # Только для залогиненных
+@login_required
 def toggle_subscription(request, category_id):
     category = get_object_or_404(Category, id=category_id)
     user = request.user
 
     if category.subscribers.filter(id=user.id).exists():
         category.subscribers.remove(user)
-        messages.info(request, f'Вы отписались от категории: {category.name}')
+        messages.info(request, _(f'Вы отписались от категории: {category.name}'))
     else:
         category.subscribers.add(user)
-        messages.success(request, f'Вы подписались на категорию: {category.name}')
+        messages.success(request, _(f'Вы подписались на категорию: {category.name}'))
 
     return redirect(request.META.get('HTTP_REFERER', '/news/'))
+
+class SetTimezoneView(View):
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/news/'))

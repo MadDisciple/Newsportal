@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-R">
+    <meta charset="UTF-8">
     <title>{{ post.title }}</title>
 </head>
 <body>
 
-    {% load custom_filters %}
-    <p>Здравствуй, {{ user.username }}. Новая статья в твоём любимом разделе!</p>
+    {% load custom_filters i18n %}
+
+    <p>
+    {% blocktrans %}Здравствуй, {{ user.username }}. Новая статья в твоём любимом разделе!{% endblocktrans %}
+    </p>
 
     <hr>
 
@@ -20,7 +23,7 @@
 
     <p>
         <a href="{{ site_url }}{{ post.get_absolute_url }}">
-            Читать статью полностью
+            {% trans "Читать статью полностью" %}
         </a>
     </p>
 </body>

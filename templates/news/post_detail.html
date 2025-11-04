@@ -1,6 +1,8 @@
 {% extends "default.html" %}
 
-{% load custom_filters %}
+{% load tz %}
+
+{% load custom_filters i18n %}
 
 {% block title %}
 {{ post.title|censor }}
@@ -11,7 +13,7 @@
 
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'post_list' %}">Лента новостей</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'post_list' %}">{% trans "Лента новостей" %}</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ post.title|censor|truncatechars:50 }}</li>
       </ol>
     </nav>
@@ -20,15 +22,15 @@
 
     <div class="mb-3 text-muted">
         <small>
-            Автор: <strong>{{ post.author.user.username }}</strong>
+            {% trans "Автор:" %} <strong>{{ post.author.user.username }}</strong>
         </small>
         <br>
         <small>
-            Дата: <strong>{{ post.created_at|date:"d M Y, H:i" }}</strong>
+            {% trans "Дата:" %} <strong>{{ post.created_at|timezone:TIME_ZONE|date:"d M Y, H:i" }}</strong>
         </small>
         <br>
         <small>
-    Категории:
+    {% trans "Категории:" %}
     {% for category in post.categories.all %}
         <span class="badge bg-secondary">{{ category.name }}</span>
 
@@ -39,14 +41,14 @@
             {% if subscribed %}
                 <a href="{% url 'toggle_subscription' category.id %}"
                    class="btn btn-sm btn-outline-secondary"
-                   title="Отписаться от {{ category.name }}">
-                   Отписаться
+                   title="{% trans "Отписаться от" %} {{ category.name }}">
+                   {% trans "Отписаться" %}
                 </a>
             {% else %}
                 <a href="{% url 'toggle_subscription' category.id %}"
                    class="btn btn-sm btn-primary"
-                   title="Подписаться на {{ category.name }}">
-                   Подписаться
+                   title="{% trans "Подписаться на" %} {{ category.name }}">
+                   {% trans "Подписаться" %}
                 </a>
             {% endif %}
         {% endif %}
@@ -63,7 +65,7 @@
 
     <hr class="my-4">
     <a href="{% url 'post_list' %}" class="btn btn-outline-secondary">
-        &larr; Назад к списку
+        &larr; {% trans "Назад к списку" %}
     </a>
 
     {% endblock content %}

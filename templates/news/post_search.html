@@ -1,26 +1,50 @@
 {% extends "default.html" %}
 
-{% load custom_filters %}
+{% load custom_filters i18n %}
 
 {% block title %}
-Поиск новостей
+{% trans "Поиск новостей" %}
 {% endblock title %}
 
 {% block content %}
-    <h2>Поиск новостей</h2>
+    <h2>{% trans "Поиск новостей" %}</h2>
     <hr>
 
     <form method="GET">
         <div class="card card-body bg-light mb-4">
-            {{ filter.form.as_p }}
-            <button type="submit" class="btn btn-primary mt-2">Найти</button>
+            <div class="mb-3">
+                <label for="{{ filter.form.title.id_for_label }}" class="form-label">
+                    {% trans "Заголовок" %}
+                </label>
+                {{ filter.form.title|addclass:"form-control" }}
+            </div>
+
+            <div class="mb-3">
+                <label for="{{ filter.form.author.id_for_label }}" class="form-label">
+                    {% trans "Автор" %}
+                </label>
+                {{ filter.form.author|addclass:"form-control" }}
+            </div>
+
+            <div class="mb-3">
+                <label for="{{ filter.form.created_after.id_for_label }}" class="form-label">
+                    {% trans "Дата (позже чем)" %}
+                </label>
+                <!--
+                  Виджет DateInput в filters.py уже установил type="date",
+                  поэтому наш 'addclass' просто добавит стиль.
+                -->
+                {{ filter.form.created_after|addclass:"form-control" }}
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-2">{% trans "Найти" %}</button>
         </div>
     </form>
 
     <hr>
 
     {% if posts %}
-        <h5 class="mb-3">Найдено: {{ posts|length }}</h5>
+        <h5 class="mb-3">{% trans "Найдено:" %} {{ posts|length }}</h5>
 
         <div class="row">
             {% for post in posts %}
@@ -33,7 +57,7 @@
                             </a>
                         </h5>
                         <small class="card-subtitle mb-2 text-muted">
-                            Автор: {{ post.author.user.username }} | {{ post.created_at|date:"d.m.Y" }}
+                            {% trans "Автор:" %} {{ post.author.user.username }} | {{ post.created_at|date:"d.m.Y" }}
                         </small>
                         <p class="card-text mt-3">
                             {{ post.text|censor|striptags|truncatechars:80 }}...
@@ -41,15 +65,18 @@
                     </div>
                     <div class="card-footer bg-transparent border-top-0">
                         <a href="{{ post.get_absolute_url }}" class="btn btn-outline-primary btn-sm">
-                            Читать далее
+                            {% trans "Читать далее" %}
                         </a>
                     </div>
-                </div> </div> {% endfor %}
-        </div> {% else %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
         {% if filter.form.is_bound %}
-            <p>По вашему запросу ничего не найдено.</p>
+            <p>{% trans "По вашему запросу ничего не найдено." %}</p>
         {% else %}
-        <p>Задайте критерии поиска, чтобы начать.</p>
+            <p>{% trans "Задайте критерии поиска, чтобы начать." %}</p>
         {% endif %}
     {% endif %}
 

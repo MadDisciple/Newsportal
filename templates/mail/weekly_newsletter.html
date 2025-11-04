@@ -2,16 +2,21 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Еженедельный дайджест</title>
+    {% load i18n %}
+    <title>{% trans "Еженедельный дайджест" %}</title>
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6;">
 
     <p>
-        Здравствуй, <strong>{{ user.username }}</strong>!
+    {% blocktrans with username=user.username %}
+        Здравствуй, <strong>{{ username }}</strong>!
+    {% endblocktrans %}
     </p>
     <p>
+    {% blocktrans with category_name=category.name %}
         Новые статьи за неделю в твоём любимом разделе:
-        <strong>«{{ category.name }}»</strong>
+        <strong>«{{ category_name }}»</strong>
+    {% endblocktrans %}
     </p>
 
     <hr>
@@ -32,8 +37,10 @@
     <hr>
 
     <p style="color: #777; font-size: 0.8em;">
+    {% blocktrans with category_name=category.name %}
         Вы получили это письмо, так как подписаны
-        на категорию «{{ category.name }}».
+        на категорию «{{ category_name }}».
+    {% endblocktrans %}
     </p>
 
 </body>

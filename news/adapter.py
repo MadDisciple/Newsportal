@@ -1,6 +1,6 @@
 from allauth.account.adapter import DefaultAccountAdapter
 from django.contrib.auth.models import Group
-
+from django.utils.translation import gettext_lazy as _
 
 class CustomAccountAdapter(DefaultAccountAdapter):
 

@@ -1,0 +1,2 @@
+# Подставить любую категорию находящуюся в базе данных:
+python manage.py delete_posts_by_category "Технологии"

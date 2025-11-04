@@ -2,6 +2,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from .models import Post
 from allauth.account.forms import LoginForm, SignupForm
+from django.utils.translation import gettext_lazy as _
+
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -12,6 +14,25 @@ class PostForm(forms.ModelForm):
             'title',
             'text',
         ]
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        text = cleaned_data.get("text")
+        title = cleaned_data.get("title")
+
+        if text is not None and len(text) < 20:
+            raise ValidationError({
+                "text": _("Текст статьи не может быть менее 20 символов.")
+            })
+
+        if title == text:
+            raise ValidationError(
+                _("Текст статьи не должен быть идентичным заголовку.")
+            )
+
+        return cleaned_data
+
 
 class CustomLoginForm(LoginForm):
 

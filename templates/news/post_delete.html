@@ -1,21 +1,24 @@
 {% extends "default.html" %}
 
+{% load i18n %}
+
 {% block title %}
-Удаление
+{% trans "Удаление" %}
 {% endblock title %}
 
 {% block content %}
-    <h2>Удаление</h2>
+    <h2>{% trans "Удаление" %}</h2>
     <hr>
-    
-    <p>Вы уверены, что хотите удалить пост: 
-       <strong>"{{ post.title }}"</strong>?
+
+    <p>
+    {% blocktrans %}Вы уверены, что хотите удалить пост:
+       <strong>"{{ post.title }}"</strong>?{% endblocktrans %}
     </p>
-    
+
     <form method="POST">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Да, удалить</button>
-        <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">Отмена</a>
+        <button type="submit" class="btn btn-danger">{% trans "Да, удалить" %}</button>
+        <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">{% trans "Отмена" %}</a>
     </form>
 
 {% endblock content %}

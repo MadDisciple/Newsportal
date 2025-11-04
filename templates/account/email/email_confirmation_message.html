@@ -1,40 +1,46 @@
-{% load account %}
+{% load i18n account %}
 
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Добро пожаловать!</title>
+    <title>{% trans "Добро пожаловать!" %}</title>
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6;">
 
-    <h2>Добро пожаловать на «Новостной Портал»!</h2>
+    <h2>{% trans "Добро пожаловать на «Новостной Портал»!" %}</h2>
 
     <p>
-        Привет, <strong>{{ user.username }}</strong>!
+    {% blocktrans with username=user.username %}
+        Привет, <strong>{{ username }}</strong>!
+    {% endblocktrans %}
     </p>
 
     <p>
+    {% blocktrans %}
         Мы рады, что ты с нами. Остался всего один шаг, чтобы
         активировать твой аккаунт и получить доступ ко всем
         возможностям сайта.
+    {% endblocktrans %}
     </p>
 
     <p style="text-align: center; margin: 25px 0;">
         <a href="{{ activation_url }}"
            style="background-color: #0d6efd; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;">
-            Активировать аккаунт
+            {% trans "Активировать аккаунт" %}
         </a>
     </p>
 
     <p style="color: #555; font-size: 0.9em;">
+    {% blocktrans %}
         (Если кнопка не работает, просто скопируй и вставь
          эту ссылку в свой браузер: {{ activation_url }})
+    {% endblocktrans %}
     </p>
 
     <hr>
     <p style="color: #777; font-size: 0.8em;">
-        Спасибо, что выбрал нас!
+        {% trans "Спасибо, что выбрал нас!" %}
     </p>
 
 </body>

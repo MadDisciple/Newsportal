@@ -1,0 +1,446 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-04 00:51+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\news\forms.py:26
+msgid "Текст статьи не может быть менее 20 символов."
+msgstr "The article text cannot be less than 20 characters."
+
+#: .\news\forms.py:31
+msgid "Текст статьи не должен быть идентичным заголовку."
+msgstr "The article text must not be identical to the title."
+
+#: .\news\models.py:9 .\news\models.py:88
+msgid "User"
+msgstr "User"
+
+#: .\news\models.py:10 .\news\models.py:58 .\news\models.py:91
+msgid "Rating"
+msgstr "Rating"
+
+#: .\news\models.py:28
+msgid "Category Name"
+msgstr "Category Name"
+
+#: .\news\models.py:29
+msgid "Subscribers"
+msgstr "Subscribers"
+
+#: .\news\models.py:39
+msgid "Article"
+msgstr "Article"
+
+#: .\news\models.py:40
+msgid "News"
+msgstr "News"
+
+#: .\news\models.py:43
+msgid "Author"
+msgstr "Author"
+
+#: .\news\models.py:48
+msgid "Post Type"
+msgstr "Post Type"
+
+#: .\news\models.py:50 .\news\models.py:90
+msgid "Created At"
+msgstr "Created At"
+
+#: .\news\models.py:54
+msgid "Categories"
+msgstr "Categories"
+
+#: .\news\models.py:56
+msgid "Title"
+msgstr "Title"
+
+#: .\news\models.py:57
+msgid "Text"
+msgstr "Text"
+
+#: .\news\models.py:79 .\news\models.py:87
+msgid "Post"
+msgstr "Post"
+
+#: .\news\models.py:80
+msgid "Category"
+msgstr "Category"
+
+#: .\news\models.py:89
+msgid "Comment Text"
+msgstr "Comment Text"
+
+#: .\news\models.py:102
+msgid "Comment by"
+msgstr "Comment by"
+
+#: .\news\models.py:102
+msgid "on"
+msgstr "on"
+
+#: .\news\views.py:74 .\news\views.py:114
+msgid "Вы не можете публиковать более трех постов в сутки."
+msgstr "You cannot publish more than three posts per day."
+
+#: .\news\views.py:143
+msgid "Поздравляем, вы теперь автор!"
+msgstr "Congratulations, you are now an author!"
+
+#: .\news\views.py:145
+msgid "Вы уже являетесь автором."
+msgstr "You are already an author."
+
+#: .\templates\account\email\email_confirmation_message.html:7
+msgid "Добро пожаловать!"
+msgstr "Welcome!"
+
+#: .\templates\account\email\email_confirmation_message.html:11
+msgid "Добро пожаловать на «Новостной Портал»!"
+msgstr "Welcome to the «News Portal»!"
+
+#: .\templates\account\email\email_confirmation_message.html:14
+#, python-format
+msgid ""
+"\n"
+"        Привет, <strong>%(username)s</strong>!\n"
+"    "
+msgstr ""
+"\n"
+"        Hi, <strong>%(username)s</strong>!\n"
+"    "
+
+#: .\templates\account\email\email_confirmation_message.html:20
+msgid ""
+"\n"
+"        Мы рады, что ты с нами. Остался всего один шаг, чтобы\n"
+"        активировать твой аккаунт и получить доступ ко всем\n"
+"        возможностям сайта.\n"
+"    "
+msgstr ""
+"\n"
+"        We are glad you are with us. There is just one step left to \n"
+"        activate your account and get access to all the site's features.\n"
+"    "
+
+#: .\templates\account\email\email_confirmation_message.html:30
+msgid "Активировать аккаунт"
+msgstr "Activate account"
+
+#: .\templates\account\email\email_confirmation_message.html:35
+#, python-format
+msgid ""
+"\n"
+"        (Если кнопка не работает, просто скопируй и вставь\n"
+"         эту ссылку в свой браузер: %(activation_url)s)\n"
+"    "
+msgstr ""
+"\n"
+"        (If the button doesn't work, just copy and paste this link \n"
+"         into your browser: %(activation_url)s)\n"
+"    "
+
+#: .\templates\account\email\email_confirmation_message.html:43
+msgid "Спасибо, что выбрал нас!"
+msgstr "Thanks for choosing us!"
+
+#: .\templates\account\login.html:4
+msgid "Вход"
+msgstr "Sign In"
+
+#: .\templates\account\login.html:10 .\templates\account\login.html:46
+msgid "Sign In"
+msgstr "Sign In"
+
+#: .\templates\account\login.html:14
+msgid "Войти через Google"
+msgstr "Sign in with Google"
+
+#: .\templates\account\login.html:18
+msgid "Войти через Яндекс"
+msgstr "Sign in with Yandex"
+
+#: .\templates\account\login.html:20
+msgid "или"
+msgstr "or"
+
+#: .\templates\account\login.html:33
+msgid "E-mail"
+msgstr "E-mail"
+
+#: .\templates\account\login.html:38
+msgid "Password"
+msgstr "Password"
+
+#: .\templates\account\login.html:50
+msgid "Зарегистрироваться"
+msgstr "Sign Up"
+
+#: .\templates\account\login.html:51
+msgid "Забыли пароль?"
+msgstr "Forgot password?"
+
+#: .\templates\account\signup.html:4 .\templates\default.html:66
+msgid "Регистрация"
+msgstr "Sign Up"
+
+#: .\templates\account\signup.html:10 .\templates\account\signup.html:34
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: .\templates\account\signup.html:12
+msgid ""
+"Для регистрации введите ваш email. Мы вышлем вам письмо для подтверждения."
+msgstr "To register, enter your email. We will send you a confirmation email."
+
+#: .\templates\account\signup.html:37
+msgid "Уже есть аккаунт?"
+msgstr "Already have an account?"
+
+#: .\templates\account\signup.html:37 .\templates\default.html:63
+msgid "Войти"
+msgstr "Sign In"
+
+#: .\templates\default.html:11 .\templates\default.html:26
+msgid "Новостной Портал"
+msgstr "News Portal"
+
+#: .\templates\default.html:28
+msgid "Toggle navigation"
+msgstr "Toggle navigation"
+
+#: .\templates\default.html:36
+msgid "Поиск"
+msgstr "Search"
+
+#: .\templates\default.html:41
+msgid "Создать новость"
+msgstr "Create news"
+
+#: .\templates\default.html:44
+msgid "Создать статью"
+msgstr "Create article"
+
+#: .\templates\default.html:53
+#, python-format
+msgid "Привет, %(user.username)s!"
+msgstr "Hi, %(user.username)s!"
+
+#: .\templates\default.html:56
+msgid "Стать автором"
+msgstr "Become an author"
+
+#: .\templates\default.html:58
+msgid "Выйти"
+msgstr "Log out"
+
+#: .\templates\default.html:96
+msgid "Close"
+msgstr "Close"
+
+#: .\templates\default.html:102
+msgid "Контент не загружен..."
+msgstr "Content not loaded..."
+
+#: .\templates\mail\new_post_notification.html:12
+#, python-format
+msgid "Здравствуй, %(user.username)s. Новая статья в твоём любимом разделе!"
+msgstr "Hello, %(user.username)s. A new article in your favorite section!"
+
+#: .\templates\mail\new_post_notification.html:26
+msgid "Читать статью полностью"
+msgstr "Read full article"
+
+#: .\templates\mail\weekly_newsletter.html:6
+msgid "Еженедельный дайджест"
+msgstr "Weekly digest"
+
+#: .\templates\mail\weekly_newsletter.html:11
+#, python-format
+msgid ""
+"\n"
+"        Здравствуй, <strong>%(username)s</strong>!\n"
+"    "
+msgstr ""
+"\n"
+"        Hello, <strong>%(username)s</strong>!\n"
+"    "
+
+#: .\templates\mail\weekly_newsletter.html:16
+#, python-format
+msgid ""
+"\n"
+"        Новые статьи за неделю в твоём любимом разделе:\n"
+"        <strong>«%(category_name)s»</strong>\n"
+"    "
+msgstr ""
+"\n"
+"        New articles for the week in your favorite section:\n"
+"        <strong>«%(category_name)s»</strong>\n"
+"    "
+
+#: .\templates\mail\weekly_newsletter.html:40
+#, python-format
+msgid ""
+"\n"
+"        Вы получили это письмо, так как подписаны\n"
+"        на категорию «%(category_name)s».\n"
+"    "
+msgstr ""
+"\n"
+"        You received this email because you are subscribed\n"
+"        to the category «%(category_name)s».\n"
+"    "
+
+#: .\templates\news\post_create.html:6
+msgid "Форма поста"
+msgstr "Post form"
+
+#: .\templates\news\post_create.html:10
+msgid "Редактирование"
+msgstr "Editing"
+
+#: .\templates\news\post_create.html:10
+msgid "Создание"
+msgstr "Creation"
+
+#: .\templates\news\post_create.html:10
+msgid "поста"
+msgstr "post"
+
+#: .\templates\news\post_create.html:24 .\templates\news\post_search.html:24
+msgid "Автор"
+msgstr "Author"
+
+#: .\templates\news\post_create.html:31
+msgid "Категории"
+msgstr "Categories"
+
+#: .\templates\news\post_create.html:43 .\templates\news\post_search.html:17
+msgid "Заголовок"
+msgstr "Title"
+
+#: .\templates\news\post_create.html:55
+msgid "Текст"
+msgstr "Text"
+
+#: .\templates\news\post_create.html:65
+msgid "Сохранить"
+msgstr "Save"
+
+#: .\templates\news\post_delete.html:6 .\templates\news\post_delete.html:10
+msgid "Удаление"
+msgstr "Deletion"
+
+#: .\templates\news\post_delete.html:14
+#, python-format
+msgid ""
+"Вы уверены, что хотите удалить пост:\n"
+"       <strong>\"%(post.title)s\"</strong>?"
+msgstr ""
+"Are you sure you want to delete the post:\n"
+"       <strong>\"%(post.title)s\"</strong>?"
+
+#: .\templates\news\post_delete.html:20
+msgid "Да, удалить"
+msgstr "Yes, delete"
+
+#: .\templates\news\post_delete.html:21
+msgid "Отмена"
+msgstr "Cancel"
+
+#: .\templates\news\post_detail.html:14 .\templates\news\post_list.html:11
+msgid "Лента новостей"
+msgstr "News feed"
+
+#: .\templates\news\post_detail.html:23 .\templates\news\post_list.html:29
+#: .\templates\news\post_search.html:60
+msgid "Автор:"
+msgstr "Author:"
+
+#: .\templates\news\post_detail.html:27
+msgid "Дата:"
+msgstr "Date:"
+
+#: .\templates\news\post_detail.html:31
+msgid "Категории:"
+msgstr "Categories:"
+
+#: .\templates\news\post_detail.html:42
+msgid "Отписаться от"
+msgstr "Unsubscribe from"
+
+#: .\templates\news\post_detail.html:43
+msgid "Отписаться"
+msgstr "Unsubscribe"
+
+#: .\templates\news\post_detail.html:48
+msgid "Подписаться на"
+msgstr "Subscribe to"
+
+#: .\templates\news\post_detail.html:49
+msgid "Подписаться"
+msgstr "Subscribe"
+
+#: .\templates\news\post_detail.html:66
+msgid "Назад к списку"
+msgstr "Back to list"
+
+#: .\templates\news\post_list.html:6
+msgid "Список новостей"
+msgstr "News list"
+
+#: .\templates\news\post_list.html:39 .\templates\news\post_search.html:68
+msgid "Читать далее"
+msgstr "Read more"
+
+#: .\templates\news\post_list.html:48
+msgid "Новостей пока нет."
+msgstr "No news yet."
+
+#: .\templates\news\post_list.html:58
+msgid "Первая"
+msgstr "First"
+
+#: .\templates\news\post_list.html:73
+msgid "Последняя"
+msgstr "Last"
+
+#: .\templates\news\post_search.html:6 .\templates\news\post_search.html:10
+msgid "Поиск новостей"
+msgstr "Search news"
+
+#: .\templates\news\post_search.html:31
+msgid "Дата (позже чем)"
+msgstr "Date (after)"
+
+#: .\templates\news\post_search.html:40
+msgid "Найти"
+msgstr "Search"
+
+#: .\templates\news\post_search.html:47
+msgid "Найдено:"
+msgstr "Found:"
+
+#: .\templates\news\post_search.html:77
+msgid "По вашему запросу ничего не найдено."
+msgstr "Nothing found for your request."
+
+#: .\templates\news\post_search.html:79
+msgid "Задайте критерии поиска, чтобы начать."
+msgstr "Set search criteria to begin."

@@ -1,14 +1,16 @@
 {% extends "default.html" %}
 
-{% load custom_filters %}
+{% load tz %}
+
+{% load custom_filters i18n %}
 
 {% block title %}
-Список новостей
+{% trans "Список новостей" %}
 {% endblock title %}
 
 {% block content %}
 
-    <h2 class="mb-4">Лента новостей</h2>
+    <h2 class="mb-4">{% trans "Лента новостей" %}</h2>
     <hr>
 
     {% if posts %}
@@ -26,7 +28,7 @@
                         </h5>
 
                         <small class="card-subtitle mb-2 text-muted">
-                            Автор: {{ post.author.user.username }} | {{ post.created_at|date:"d.m.Y" }}
+                            {% trans "Автор:" %} {{ post.author.user.username }} | {{ post.created_at|timezone:TIME_ZONE|date:"d.m.Y" }}
                         </small>
 
                         <p class="card-text mt-3">
@@ -36,7 +38,7 @@
                     </div>
                     <div class="card-footer bg-transparent border-top-0">
                         <a href="{{ post.get_absolute_url }}" class="btn btn-outline-primary btn-sm">
-                            Читать далее
+                            {% trans "Читать далее" %}
                         </a>
                     </div>
                 </div>
@@ -45,7 +47,7 @@
         </div>
 
     {% else %}
-        <p>Новостей пока нет.</p>
+        <p>{% trans "Новостей пока нет." %}</p>
     {% endif %}
 
     <hr>
@@ -55,7 +57,7 @@
 
             {% if page_obj.has_previous %}
                 <li class="page-item">
-                    <a class="page-link" href="?page=1">&laquo; Первая</a>
+                    <a class="page-link" href="?page=1">&laquo; {% trans "Первая" %}</a>
                 </li>
             {% endif %}
 
@@ -70,7 +72,7 @@
             {% if page_obj.has_next %}
                 <li class="page-item">
                     <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
-                        Последняя &raquo;
+                        {% trans "Последняя" %} &raquo;
                     </a>
                 </li>
             {% endif %}
